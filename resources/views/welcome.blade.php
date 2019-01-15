@@ -39,4 +39,12 @@
   @endforelse
 </div>
 
+@if(count($messages))
+    <div class="row">
+        <div class="mt-5 mx-auto">
+            {{ $messages }}
+        </div>
+    @endif
+</div>
+
 @endsection
