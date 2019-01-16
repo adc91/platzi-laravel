@@ -27,7 +27,7 @@
 
 <div class="row">
   @forelse ($messages as $message)
-    <div class="col-6">
+    <div class="col-6 mt-5">
       <img src="{{ $message->image }}" class="img-thumbnail">
       <p class="card-text">
         {{ $message->content }}
