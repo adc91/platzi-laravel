@@ -11,10 +11,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        factory(App\User::class, 50)->create()->each(function(App\User $user){
+            factory(App\Message::class)
+                ->times(mt_rand(1, 3))
+                ->create([
+                    'user_id' => $user->id
+                ]);
+        });
+
+        /**
+        factory(App\User::class)
+            ->times(10)
+            ->create();
 
         factory(App\Message::class)
-            ->times(25)
-            ->create();
+            ->times(mt_rand(10, 90))
+            ->create([
+                'user_id' => mt_rand(1, 10)
+            ]);
+        */
     }
 }
