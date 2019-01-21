@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
                 ]);
 
             $user->follows()->sync(
-                $users->random(10)
+                $users->random(random_int(4, 12))
             );
         });
 

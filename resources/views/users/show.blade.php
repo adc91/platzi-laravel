@@ -4,20 +4,51 @@
     <h1>{{ $user->name }}</h1>
     <img src="{{ $user->avatar }}" alt="{{ $user->name }}">
 
-    <div class="mt-5 mb-5">
-        <form action="{{ url($user->username) }}/follow" method="post">
-            @if (session('success'))
-                <span class="text-success mt-5 mb-5">{{ session('success') }}</span>
-            @endif
+    <p class="mt-2">
+        <a class="btn btn-link" href="{{ url($user->username) }}/follows">
+            Sigue a <span class="badge badge-secondary">{{ $user->follows->count() }}</span>
+        </a>
+        &nbsp;
+        <a class="btn btn-link" href="{{ url($user->username) }}/followers">
+            Seguidores <span class="badge badge-secondary">{{ $user->followers->count() }}</span>
+        </a>
+    </p>
 
-             @if (session('error'))
-                <span class="text-danger mt-5 mb-5">{{ session('error') }}</span>
-            @endif
+    @if (Auth::check())
+        @if (!Auth::user()->isFollowing($user))
+            @if (Auth::id() !== $user->id)
+                <div class="mt-3 mb-3">
+                    <form action="{{ url($user->username) }}/follow" method="post">
+                        @if (session('success'))
+                            <div class="text-success mt-1 mb-1">{{ session('success') }}</div>
+                        @endif
 
-            <button class="btn btn-primary">Follow</button>
-            @csrf
-        </form>
-    </div>
+                         @if (session('error'))
+                            <div class="text-danger mt-1 mb-1">{{ session('error') }}</div>
+                        @endif
+
+                        <button class="btn btn-primary">Seguir</button>
+                        @csrf
+                    </form>
+                </div>
+            @endif
+        @else
+            <div class="mt-3 mb-3">
+                <form action="{{ url($user->username) }}/unfollow" method="post">
+                    @if (session('success'))
+                        <div class="text-success mt-1 mb-1">{{ session('success') }}</div>
+                    @endif
+
+                     @if (session('error'))
+                        <div class="text-danger mt-1 mb-1">{{ session('error') }}</div>
+                    @endif
+
+                    <button class="btn btn-danger">Dejar de seguir</button>
+                    @csrf
+                </form>
+            </div>
+        @endif
+    @endif
 
     <h1>Mensajes</h1>
     <div class="row">
