@@ -22,6 +22,7 @@
                     <form action="{{ url($user->username) }}/dms" method="post">
                         <input type="text" name="message" class="form-control" placeholder="Escriba su mensaje...">
                         <button type="submit" class="btn btn-primary mt-4">Enviar DM</button>
+                        @csrf
                     </form>
                 </div>
             </div>
