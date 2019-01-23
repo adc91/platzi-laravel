@@ -15,6 +15,18 @@
     </p>
 
     @if (Auth::check())
+        @if (Gate::allows('dms', $user))
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Contactar</h4>
+                    <form action="{{ url($user->username) }}/dms" method="post">
+                        <input type="text" name="message" class="form-control" placeholder="Escriba su mensaje...">
+                        <button type="submit" class="btn btn-primary mt-4">Enviar DM</button>
+                    </form>
+                </div>
+            </div>
+        @endif
+
         @if (!Auth::user()->isFollowing($user))
             @if (Auth::id() !== $user->id)
                 <div class="mt-3 mb-3">
