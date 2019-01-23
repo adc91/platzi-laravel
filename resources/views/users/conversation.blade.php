@@ -4,7 +4,7 @@
     <h1>Conversación con {{ $conversation->users->except($user->id)->implode('name', ', ') }}</h1>
 
     @foreach ($conversation->privateMessages as $message)
-        <div class="card">
+        <div class="card mb-4">
             <div class="card-header">
                 <img src="{{ $message->user->avatar }}" alt="{{ $message->user->name }}" width="18">
                 {{ $message->user->name }} dijo...
