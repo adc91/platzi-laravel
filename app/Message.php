@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Storage;
+
 class Message extends Model
 {
     protected $guarded = [];
@@ -12,8 +14,6 @@ class Message extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    //
 
     public function getImageAttribute($image)
     {
