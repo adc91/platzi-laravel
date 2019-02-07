@@ -16,4 +16,11 @@ class ExampleTest extends TestCase
     {
         $this->assertTrue(true);
     }
+
+    public function testCanSearchFormMessages()
+    {
+        $response = $this->get('/messages?query=Alice');
+
+        $response->assertSee('Alice');
+    }
 }
