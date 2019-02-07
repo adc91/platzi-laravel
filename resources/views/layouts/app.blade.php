@@ -36,10 +36,13 @@
                         <li class="nav-item">
                             <div class="input-group">
                                 <form action="{{ url('messages') }}">
-                                <input type="text" name="query" class="form-control" placeholder="Buscar..." value="{{ Request::input('query') }}" required>
-                                <span class="input-group-btn">
-                                    <button class="btn btn-outline-success">Buscar</button>
-                                </span>
+                                <div class="float-left">
+                                    <input type="text" name="query" class="form-control" placeholder="Buscar..." value="{{ Request::input('query') }}" required>
+                                </div>
+                                <div class="float-left">
+                                    <button class="btn btn-outline-success ml-2">Buscar</button>
+                                </div>
+                                <div class="clearfix"></div>
                             </form>
                         </li>
                     </ul>

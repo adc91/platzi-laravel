@@ -33,7 +33,7 @@ class MessagesController extends Controller
     {
         $query = $request->input('query');
 
-        $messages = Message::search($query)->get();
+        $messages = Message::search($query)->paginate(9);
         $messages->load('user');
 
         return view('messages.index', [
