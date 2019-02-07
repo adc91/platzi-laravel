@@ -33,7 +33,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li class="nav-item">
+                            <div class="input-group">
+                                <form action="{{ url('messages') }}">
+                                <input type="text" name="query" class="form-control" placeholder="Buscar..." value="{{ Request::input('query') }}" required>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-outline-success">Buscar</button>
+                                </span>
+                            </form>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

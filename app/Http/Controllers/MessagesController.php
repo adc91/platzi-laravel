@@ -26,8 +26,25 @@ class MessagesController extends Controller
 
     public function show(Message $message)
     {
-        // $message = Message::findOrFail($id);
-
         return view('messages.show', compact('message'));
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        $messages = Message::search($query)->get();
+        $messages->load('user');
+
+        return view('messages.index', [
+            'messages' => $messages
+        ]);
+    }
+
+    public function toSearchableArray()
+    {
+        $this->load('user');
+
+        return $this->toArray();
     }
 }
