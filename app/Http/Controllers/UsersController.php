@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Conversation;
 use App\PrivateMessage;
+use App\Notifications\UserFollowed;
 
 class UsersController extends Controller
 {
@@ -45,11 +46,9 @@ class UsersController extends Controller
 
         $me = $request->user();
 
-        try {
-            $me->follows()->attach($user);
-        } catch (\Exception $err) {
-            return redirect(url($username))->withError('No se ha podido seguir a este usaurio!');
-        }
+        $me->follows()->attach($user);
+
+        $user->notify(new UserFollowed($me));
 
         return redirect(url($username))->withSuccess('Estás siguiendo a este usuario!');
     }
