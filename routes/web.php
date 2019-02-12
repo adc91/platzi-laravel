@@ -34,6 +34,8 @@ Route::group(['middleware' => 'auth'], function () {
      // Conversations
     Route::get('/conversations/{conversation}', 'UsersController@showConversation');
 
+    Route::get('/api/notifications', 'UsersController@notifications');
+
     // Messages
     Route::post('/messages/create', 'MessagesController@create');
 
