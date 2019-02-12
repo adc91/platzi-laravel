@@ -15,4 +15,11 @@ class PagesController extends Controller
 
     return view('welcome', compact('messages'));
   }
+
+  public function language(Request $request)
+  {
+    session()->put('locale', $request->input('lang'));
+
+    return back();
+  }
 }

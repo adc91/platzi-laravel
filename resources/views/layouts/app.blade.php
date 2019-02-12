@@ -37,10 +37,10 @@
                             <div class="input-group">
                                 <form action="{{ url('messages') }}">
                                 <div class="float-left">
-                                    <input type="text" name="query" class="form-control" placeholder="Buscar..." value="{{ Request::input('query') }}" required>
+                                    <input type="text" name="query" class="form-control" placeholder="{{ trans('app.search') }}" value="{{ Request::input('query') }}" required>
                                 </div>
                                 <div class="float-left">
-                                    <button class="btn btn-outline-success ml-2">Buscar</button>
+                                    <button class="btn btn-outline-success ml-2">{{ trans('app.search') }}</button>
                                 </div>
                                 <div class="clearfix"></div>
                             </form>
@@ -60,6 +60,18 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Idioma <span class="caret"></span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    @if (App::getLocale() == 'es')
+                                        <a class="dropdown-item" href="{{ route('web.locale.en') }}">Inglés</a>
+                                    @else
+                                        <a class="dropdown-item" href="{{ route('web.local.es') }}">Español</a>
+                                    @endif
+                                </div>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown2" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     Notificaciones <span class="caret"></span>

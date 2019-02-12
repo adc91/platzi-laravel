@@ -14,6 +14,9 @@
 Auth::routes();
 
 Route::get('/', 'PagesController@home');
+Route::get('/locale?lang=es', 'PagesController@language')->name('web.local.es');
+Route::get('/locale?lang=en', 'PagesController@language')->name('web.local.en');
+
 Route::get('/messages/{message}', 'MessagesController@show');
 
 // Registar & Login
